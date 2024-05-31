@@ -83,13 +83,15 @@ dialog {
     label {
         flex: 1;
     }
-    input {
+    input, select {
         padding-left: 2ch;
-    }
-    select {
-        margin-left: -0.3rem;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: 2px solid lightblue;
+        border-radius: 500px;
     }
     input, select {
         flex: 4;
     }
+
 }
