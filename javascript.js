@@ -37,4 +37,15 @@ function queryBooks() {
 
 document.addEventListener('DOMContentLoaded', () => {
     queryBooks();
+
+    const dialog = document.querySelector('dialog');
+    const addBookBtn = document.querySelector('#showForm');
+    addBookBtn.addEventListener('click', () => {
+        dialog.showModal();
+    })
+
+    const closeForm = document.querySelector('#closeForm');
+    closeForm.onclick = () => {dialog.close()};
+
+    
 })
