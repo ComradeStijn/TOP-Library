@@ -1,7 +1,7 @@
 
 const myLibrary = [];
-addBookToLibrary('title', 'author', 'pages', 'read');
-addBookToLibrary('test', 'test', 'test', 'test');
+addBookToLibrary('title', 'author', 'pages', 'Yes');
+addBookToLibrary('test', 'test', 'test', 'No');
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -16,9 +16,25 @@ function addBookToLibrary(title, author, pages, read) {
 };
 
 function queryBooks() {
+    const tableBody = document.querySelector('#tableBody');
     for (const book of myLibrary) {
-        console.log(book);
+        const tr = document.createElement('tr');
+
+        // Create the four td elements
+        const [title, author, pages, read] = Array(4).fill().map(() => {
+            return document.createElement('td');
+        });
+
+        title.innerText = book.title;
+        author.innerText = book.author;
+        pages.innerText = book.pages;
+        read.innerText = book.read;
+
+        tr.append(title, author, pages, read);
+        tableBody.append(tr);
     }
 }
 
-queryBooks();
+document.addEventListener('DOMContentLoaded', () => {
+    queryBooks();
+})
