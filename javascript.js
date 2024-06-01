@@ -1,7 +1,6 @@
 
 let myLibrary = [];
-addBookToLibrary('title', 'author', 'pages', 'Yes');
-addBookToLibrary('test', 'test', 124, 'No');
+
 
 function Book(title, author, pages, read) {
     this.title = title;
