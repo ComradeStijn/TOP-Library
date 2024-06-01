@@ -32,6 +32,11 @@ function addBookToTable(book) {
     pages.innerText = book.pages;
     read.innerText = book.read;
 
+    pages.style.fontSize = '2rem';
+    pages.style.textAlign = 'center';
+    read.style.fontSize = '2rem';
+    read.style.textAlign = 'center';
+
     // Delete button in table
     const deleteBtn = document.createElement('button');
     deleteBtn.innerText = "Delete book";
