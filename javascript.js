@@ -2,7 +2,6 @@
 let myLibrary = [];
 addBookToLibrary('title', 'author', 'pages', 'Yes');
 addBookToLibrary('test', 'test', 124, 'No');
-console.log(myLibrary)
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -73,7 +72,6 @@ function handleDeleteBook(book, tr) {
     myLibrary = myLibrary.filter((bookInLibrary) => {
         return bookInLibrary.id !== book.id;
     });
-    console.log(myLibrary)
     tr.remove();
 }
 
@@ -101,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createBook = document.querySelector('#createBook');
     createBook.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         const title = dialog.querySelector('#title').value;
         const author = dialog.querySelector('#author').value;
         const pages = dialog.querySelector('#pages').value;
