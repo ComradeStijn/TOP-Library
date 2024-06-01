@@ -1,7 +1,8 @@
 
-const myLibrary = [];
+let myLibrary = [];
 addBookToLibrary('title', 'author', 'pages', 'Yes');
 addBookToLibrary('test', 'test', 124, 'No');
+console.log(myLibrary)
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -11,25 +12,18 @@ function Book(title, author, pages, read) {
     this.id = myLibrary.length;
 };
 
-function addBookToLibrary(title, author, pages, read, id) {
-    const book = new Book(title, author, pages, read, id);
+function addBookToLibrary(title, author, pages, read) {
+    const book = new Book(title, author, pages, read);
+    myLibrary.push(book);
     addBookToTable(book);
-    return myLibrary.push(book);
 };
 
-// function queryBooks() {
-//     const tableBody = document.querySelector('#tableBody');
-//     for (const book of myLibrary) {
-//         addBookToTable(book);
-//     }
-// }
 
 function addBookToTable(book) {
     const tr = document.createElement('tr');
-    tr.dataset.id = book.id;
 
     // Create the four td elements
-    const [title, author, pages, read] = Array(4).fill().map(() => {
+    const [title, author, pages, read, deleteElement] = Array(5).fill().map(() => {
         return document.createElement('td');
     });
 
@@ -38,8 +32,24 @@ function addBookToTable(book) {
     pages.innerText = book.pages;
     read.innerText = book.read;
 
-    tr.append(title, author, pages, read);
+    // Delete button in table
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerText = "Delete book";
+    deleteBtn.className = "red deletebook";
+    // Delete button: remove from myLibrary and remove from HTML DOM
+    deleteBtn.addEventListener('click', () => handleDeleteBook(book, tr));
+    deleteElement.append(deleteBtn);
+
+    tr.append(title, author, pages, read, deleteElement);
     tableBody.append(tr);
+}
+
+function handleDeleteBook(book, tr) {
+    myLibrary = myLibrary.filter((bookInLibrary) => {
+        return bookInLibrary.id !== book.id;
+    });
+    console.log(myLibrary)
+    tr.remove();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -64,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pages = dialog.querySelector('#pages').value;
         const read = dialog.querySelector('#read') === 'true' ? "Yes" : "No";
         addBookToLibrary(title, author, pages, read);
-
+        console.log(myLibrary)
         dialog.close();
-    })
+    });
 })
