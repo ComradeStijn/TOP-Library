@@ -36,7 +36,6 @@ function addBookToTable(book) {
     const deleteBtn = document.createElement('button');
     deleteBtn.innerText = "Delete book";
     deleteBtn.className = "red deletebook";
-    // Delete button: remove from myLibrary and remove from HTML DOM
     deleteBtn.addEventListener('click', () => handleDeleteBook(book, tr));
     deleteElement.append(deleteBtn);
 
@@ -44,6 +43,7 @@ function addBookToTable(book) {
     tableBody.append(tr);
 }
 
+// Delete book from myLibrary and remove the table row 'tr' that contains the book
 function handleDeleteBook(book, tr) {
     myLibrary = myLibrary.filter((bookInLibrary) => {
         return bookInLibrary.id !== book.id;
